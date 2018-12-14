@@ -1,10 +1,20 @@
 ---
-- hosts: localhost
+- hosts: localhost 
   become: true
+
   pre_tasks:
     - name: update repositories
       apt: update_cache=yes
       changed_when: False
+  # tasks:
+  # - import_role:
+  #     name: nickjj.docker
+- import_playbook: tasks/node.yml
+  vars:
+    username: matthew
+- import_playbook: tasks/zsh.yml
+  vars:
+    username: matthew
 
-  tasks:
-    - include: tasks/packages.yml
+
+
